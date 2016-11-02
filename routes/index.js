@@ -8,9 +8,21 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
-router.post('/user', function(req, res){
-  User.find({"login":req.body.login, "password": req.body.password },function (err, data) {
-    return res.json({"data":data, "error":err});
+router.post('/login', function(req, res){
+  User.find({"login":req.body.login },function (err, data) {
+    if (data.length > 0){
+      if (data[0].password == req.body.password){
+        var temp = {
+          "name": data[0].name,
+          "hall": data[0].hall,
+          "prevRoom": data[0].prevHall,
+          "priority": data[0].priority
+        };
+        return res.json({"user": true, "pass":true, "data":temp});
+      }
+      return res.json({"user": true, "pass":false});
+    }
+    return res.json({"user":false});
   })
 });
 
