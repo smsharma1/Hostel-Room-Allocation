@@ -4,7 +4,7 @@ var userSchema = new mongoose.Schema({
     name: String,
     password: String,
     hall: Number,
-    login: String,
+    username: String,
     prevRoom: String,
     priority: Array,
     finalRoom: String
