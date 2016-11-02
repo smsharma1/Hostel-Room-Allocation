@@ -1,14 +1,20 @@
-var app = angular.module('mainApp', ['ngRoute']).run(function($rootScope) {
+var app = angular.module('mainApp', ['ngRoute', 'ngResource']).run(function($rootScope, $http) {
   $rootScope.authenticated = false;
   $rootScope.current_user = '';
+
+  $rootScope.signout = function(){
+    $http.get('auth/signout');
+    $rootScope.authenticated = false;
+    $rootScope.current_user = '';
+  };
 });
 
 app.config(function($routeProvider){
   $routeProvider
     //the timeline display
     .when('/', {
-      templateUrl: 'index.html',
-      controller: 'authController'
+      templateUrl: 'login.html',
+      controller: 'mainController'
     })
     //the login display
     .when('/login', {
@@ -19,6 +25,11 @@ app.config(function($routeProvider){
     .when('/register', {
       templateUrl: 'register.html',
       controller: 'authController'
+    })
+    //the signup display
+    .when('/pref', {
+      templateUrl: 'pref.html',
+      controller: 'mainController'
     });
 });
 
@@ -34,7 +45,7 @@ app.controller('authController', function($scope, $http, $rootScope, $location){
       if(data.state == 'success'){
         $rootScope.authenticated = true;
         $rootScope.current_user = data.user.username;
-        $location.path('/#/login');
+        $location.path('/pref');
       }
       else{
         $scope.error_message = data.message;
@@ -47,7 +58,7 @@ app.controller('authController', function($scope, $http, $rootScope, $location){
       if(data.state == 'success'){
         $rootScope.authenticated = true;
         $rootScope.current_user = data.user.username;
-        $location.path('/#/login');
+        $location.path('/pref');
       }
       else{
         $scope.error_message = data.message;
