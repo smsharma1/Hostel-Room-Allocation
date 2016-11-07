@@ -41,7 +41,8 @@ app.controller('mainController', function($scope, $http, $rootScope, $location){
   $http.get('/api/rooms').success(function(data){
     $scope.roomList = data;
   });
-  $scope.priority = [];
+  $scope.friendPriority = [];
+  $scope.roomPriority = [];
   $scope.value = 1;
   
   
@@ -49,14 +50,22 @@ app.controller('mainController', function($scope, $http, $rootScope, $location){
       $scope.err = data;
   });
 
-  $scope.addPref = function(){
-    $scope.priority.push({ "value":$scope.value, "room":$scope.room});
+  $scope.addFriendPref = function(){
+    $scope.friendPriority.push({ "value":$scope.friendValue, "friend":$scope.friend});
+    _.remove($scope.friendList,function(n){ return n == $scope.friend });
+  }
+
+  $scope.addRoomPref = function(){
+    $scope.roomPriority.push({ "value":$scope.roomValue, "room":$scope.room});
     _.remove($scope.roomList,function(n){ return n == $scope.room });
   }
 
-
   $scope.submit = function(){
-    $http.put('/api/preference', { "username":$rootScope.current_user,"priority":$scope.priority}).success(function(data){
+    $http.put('/api/preference', { 
+      "username":$rootScope.current_user,
+      "friendPriority":$scope.friendPriority,
+      "roomPriority":$scope.roomPriority
+    }).success(function(data){
       $scope.err = data;
     })
   }

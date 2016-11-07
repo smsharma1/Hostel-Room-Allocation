@@ -30,13 +30,17 @@ router.post('/preference', function (req, res) {
       "name": data[0].name,
       "hall": data[0].hall,
       "prevRoom": data[0].prevRoom,
-      "priority": data[0].priority
+      "friendPriority": data[0].friendPriority,
+      "roomPriority": data[0].roomPriority
     });
   })
 });
 
 router.put('/preference', function (req, res) {
-  User.findOneAndUpdate({ "username": req.body.username }, { $set: { priority: req.body.priority } },
+  User.findOneAndUpdate({ "username": req.body.username }, { $set: { 
+    friendPriority: req.body.friendPriority,
+    roomPriority: req.body.roomPriority,
+   } },
     function (err, data) {
       if (err) return res.send(err);
       return res.send(data);

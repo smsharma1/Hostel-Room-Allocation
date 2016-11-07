@@ -1,21 +1,22 @@
 <form>
 	<fieldset>
 		<legend> Room Mate Preference Order</legend>
-		scale:<input type="number" name="scale" min="1" max="100" step="1" value="5"> Wingmate:
+		scale:<input type="number" name="scale" min="1" max="100" ng-model="friendValue"> Wingmate:
 		<select ng-options="item for item in friendList" ng-model="friend"></select>
-		<button type="button" ng-click="addPref()">Add</button><br>
+		<button type="button" ng-click="addFriendPref()">Add</button><br>
 	</fieldset>
 </form>
 <form>
 	<fieldset>
 		<legend> Room Preference Order</legend>
-		scale:<input type="number" min="1" max="100" ng-model="value"> Room:
+		scale:<input type="number" min="1" max="100" ng-model="roomValue"> Room:
 		<select ng-options="item for item in roomList" ng-model="room"></select>
-		<button type="button" ng-click="addPref()">Add</button><br>
+		<button type="button" ng-click="addRoomPref()">Add</button><br>
 	</fieldset>
 </form>
 
-{{priority}}{{room}}
+{{friendPriority}}
+{{roomPriority}}
 {{err}}
 <form>
 	<fieldset>
