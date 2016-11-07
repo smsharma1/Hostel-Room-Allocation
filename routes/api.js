@@ -3,11 +3,6 @@ var router = express.Router();
 
 var mongoose = require('mongoose');
 var User = mongoose.model('Users');
-/* GET home page. 
-router.get('/', function(req, res, next) {
-  res.render('index');
-});*/
-
 //Used for routes that must be authenticated.
 function isAuthenticated (req, res, next) {
     // if user is authenticated in the session, call the next() to call the next request handler 
@@ -23,7 +18,7 @@ function isAuthenticated (req, res, next) {
     }
 
     // if the user is not authenticated then redirect him to the login page
-    return res.redirect('/#login');
+    return res.redirect('/');
 };
 
 //Register the authentication middleware
