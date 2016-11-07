@@ -6,8 +6,10 @@ var userSchema = new mongoose.Schema({
     hall: Number,
     username: String,
     prevRoom: String,
-    priority: Array,
-    finalRoom: String
+    friendPriority: Array,
+    roomPriority: Array,
+    finalRoom: String,
+    roomie: String
 });
 
 mongoose.model("Users",userSchema);
