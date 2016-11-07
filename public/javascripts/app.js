@@ -1,10 +1,11 @@
 var app = angular.module('mainApp', ['ngRoute', 'ngResource', 'ngMaterial', 'ngMessages']).run(function($rootScope, $http, $location) {
   $rootScope.authenticated = false;
   $rootScope.current_user = '';
+  $rootScope.currentNavItem = 'login';
   $location.path('/login');
 
   $rootScope.signout = function(){
-    $http.get('auth/signout');
+    $http.get('/auth/signout');
     $rootScope.authenticated = false;
     $rootScope.current_user = '';
   };
@@ -61,7 +62,7 @@ app.controller('mainController', function($scope, $http, $rootScope, $location){
 app.controller('authController', function($scope, $http, $rootScope, $location){
   $scope.user = {username: '', password: ''};
   $scope.error_message = '';
-
+  
   $scope.login = function(){
     $http.post('/auth/login', $scope.user).success(function(data){
       if(data.state == 'success'){
