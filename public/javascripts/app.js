@@ -1,4 +1,4 @@
-var app = angular.module('mainApp', ['ngRoute', 'ngResource']).run(function($rootScope, $http, $location) {
+var app = angular.module('mainApp', ['ngRoute', 'ngResource', 'ngMaterial']).run(function($rootScope, $http, $location) {
   $rootScope.authenticated = false;
   $rootScope.current_user = '';
   $location.path('/login');
@@ -33,6 +33,7 @@ app.controller('mainController', function($scope, $http, $rootScope, $location){
   if(!$rootScope.authenticated){
     $location.path('/login');
   }
+  
   $scope.roomList = ["A212","A213","A214","A215","A216","A217","A218","A219","A220","A221"];
   $scope.friendList = ["Tom","Dick","Harry","Jedi","Luke","Darth","Voldemort","Dumbledore","Strange","Pikachu"];
   $scope.priority = [];

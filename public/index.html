@@ -1,25 +1,27 @@
 <html>
-  <head>
-    <title>Room Allocation</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-route.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.5.8/angular-resource.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/lodash/4.16.6/lodash.min.js"></script>
-    <script src="javascripts/app.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-  </head>
-  <body ng-app="mainApp">
-    <div id='main' class="container">
-      <nav class="navbar-fluid navbar-default">
-        <div class="container">
-          <p class="navbar-right navbar-text" ng-show="authenticated"><a href="#" ng-click="signout()">Logout</a></p>
-          <p class="navbar-right navbar-text" ng-hide="authenticated"><a href="#/login">Login</a> or <a href="#/register">Register</a></p>
-        </div>
-      </nav>
-      <div class="col-md-offset-2 col-md-8">
-        <div ng-view>
-        </div>
-      </div>
-    </div>
-  </body>
+
+<head>
+	<title>Room Allocation</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.5.8/angular-resource.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/lodash/4.16.6/lodash.min.js"></script>
+	<script src="javascripts/app.js"></script>
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+
+  <!-- Angular Material Library -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+</head>
+
+<body ng-app="mainApp" layout="column" layout-padding ng-cloak>
+	<p ng-show="authenticated"><a href="#" ng-click="signout()">Logout</a></p>
+	<p ng-hide="authenticated"><a href="#/login">Login</a> or <a href="#/register">Register</a></p>
+	<div ng-view>
+	</div>
+</body>
+
 </html>
