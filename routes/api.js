@@ -53,5 +53,14 @@ router.get('/users', function(req, res){
   })
 });
 
+router.get('/rooms', function(req, res){
+  User.find({},function (err, data) {
+    var roomsList = [];
+    _.forEach(data, function (value) {
+      roomsList.push(value.prevRoom);
+    });
+    return res.send(_.uniq(roomsList));
+  })
+});
 
 module.exports = router;
