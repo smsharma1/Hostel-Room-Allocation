@@ -34,14 +34,20 @@ app.config(function($routeProvider){
 });
 
 app.controller('mainController', function($scope, $http, $rootScope){
-  $scope.roomList = ["A212","A213","A214","A215","A216"];
-  $scope.friendList = ["Tom","Dick","Harry","Jedi","Luke"];
+  $scope.roomList = ["A212","A213","A214","A215","A216","A217","A218","A219","A220","A221"];
+  $scope.friendList = ["Tom","Dick","Harry","Jedi","Luke","Darth","Voldemort","Dumbledore","Strange","Pikachu"];
   $scope.priority = [];
   $scope.value = 1;
+  
+  $http.post('/api/preference', { "username":$rootScope.current_user}).success(function(data){
+      $scope.err = data;
+    })
+
   $scope.addPref = function(){
     $scope.priority.push({ "value":$scope.value, "room":$scope.room});
     _.remove($scope.roomList,function(n){ return n == $scope.room });
   }
+
 
   $scope.submit = function(){
     $http.put('/api/preference', { "username":$rootScope.current_user,"priority":$scope.priority}).success(function(data){
