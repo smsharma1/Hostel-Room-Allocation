@@ -27,23 +27,25 @@ function isAuthenticated (req, res, next) {
 };
 
 //Register the authentication middleware
-router.use('/login', isAuthenticated);
+router.use('/preference', isAuthenticated);
 
-router.post('/login', function(req, res){
-  User.find({"login":req.body.login },function (err, data) {
-    return res.json( {
-          "name": data[0].name,
-          "hall": data[0].hall,
-          "prevRoom": data[0].prevHall,
-          "priority": data[0].priority
-        });
+router.post('/preference', function (req, res) {
+  User.find({ "username": req.body.username }, function (err, data) {
+    return res.json({
+      "name": data[0].name,
+      "hall": data[0].hall,
+      "prevRoom": data[0].prevRoom,
+      "priority": data[0].priority
+    });
   })
 });
 
-router.post('/update', function(req, res){
-  User.findOneAndUpdate({"login":req.body.login },{"priority":req.body.priority},function (err, data) {
-    return res.json({"success": true});
-  })
+router.put('/preference', function (req, res) {
+  User.findOneAndUpdate({ "username": req.body.username }, { $set: { priority: req.body.priority } },
+    function (err, data) {
+      if (err) return res.send(err);
+      return res.send(data);
+    })
 });
 
 

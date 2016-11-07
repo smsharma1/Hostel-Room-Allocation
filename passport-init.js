@@ -1,8 +1,7 @@
-var User = require('./models/user');
-var mongoose = require('mongoose');   
-var User = mongoose.model('Users');
 var LocalStrategy   = require('passport-local').Strategy;
 var bCrypt = require('bcrypt-nodejs');
+var mongoose = require('mongoose');   
+var User = mongoose.model('Users');
 
 module.exports = function(passport){
 
@@ -10,13 +9,13 @@ module.exports = function(passport){
     passport.serializeUser(function(user, done) {
         console.log('serializing user:',user.username);
         //return the unique id for the user
-        done(null, user.username);
+        return done(null, user._id);
     });
 
     //Desieralize user will call with the unique id provided by serializeuser
-    passport.deserializeUser(function(username, done) {
+    passport.deserializeUser(function(id, done) {
 
-        User.find({"username":username}, function(err, user) {
+        User.findById(id, function(err, user) {
             console.log('deserializing user:',user.username);
             done(err, user);
         });
