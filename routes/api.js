@@ -52,7 +52,7 @@ router.get('/users/:username', function(req, res){
     var usersList = [];
     _.forEach(data, function (value) {
       if(value.username != req.params.username) {
-        usersList.push(value.name);
+        usersList.push(value.username);
       }
     });
     return res.send(usersList);

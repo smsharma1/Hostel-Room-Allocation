@@ -61,6 +61,12 @@ app.controller('mainController', function($scope, $http, $rootScope, $location){
   }
 
   $scope.submit = function(){
+    _.forEach($scope.friendList,function (value) {
+      $scope.friendPriority.push({ "value":100, "friend":value});
+    });
+     _.forEach($scope.roomList,function (value) {
+      $scope.roomPriority.push({ "value":100, "room":value});
+    });
     $http.put('/api/preference', { 
       "username":$rootScope.current_user,
       "friendPriority":$scope.friendPriority,
