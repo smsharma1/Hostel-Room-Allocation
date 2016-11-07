@@ -33,7 +33,9 @@ app.config(function($routeProvider){
     });
 });
 
-app.controller('mainController', function(){
+app.controller('mainController', function($scope){
+  $scope.roomList = ["A212","A213","A214","A215","A216"];
+  
 });
 
 app.controller('authController', function($scope, $http, $rootScope, $location){

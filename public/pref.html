@@ -15,9 +15,7 @@
 		<legend> Room Preference Order</legend>
 		scale:<input type="number" name="scale" min="1" max="100" step="1" value="5"> Room:
 		<select name='room'>
-  <option value="A111">A111</option>
-  <option value="A112">A112</option>
-  <option value="A113">A113</option>
+			<option ng-repeat="item in roomList">{{item}}</option>
         </select>
 		<input value="Add" type="submit"><br>
 	</fieldset>
