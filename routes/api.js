@@ -43,11 +43,13 @@ router.put('/preference', function (req, res) {
     })
 });
 
-router.get('/users', function(req, res){
+router.get('/users/:username', function(req, res){
   User.find({},function (err, data) {
     var usersList = [];
     _.forEach(data, function (value) {
-      usersList.push({username:value.username,name:value.name});
+      if(value.username != req.params.username) {
+        usersList.push(value.name);
+      }
     });
     return res.send(usersList);
   })

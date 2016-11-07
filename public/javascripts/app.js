@@ -35,8 +35,12 @@ app.controller('mainController', function($scope, $http, $rootScope, $location){
     $location.path('/login');
   }
   
-  $scope.roomList = ["A212","A213","A214","A215","A216","A217","A218","A219","A220","A221"];
-  $scope.friendList = ["Tom","Dick","Harry","Jedi","Luke","Darth","Voldemort","Dumbledore","Strange","Pikachu"];
+  $http.get('/api/users/'+$rootScope.current_user).success(function(data){
+    $scope.friendList = data;
+  });
+  $http.get('/api/rooms').success(function(data){
+    $scope.roomList = data;
+  });
   $scope.priority = [];
   $scope.value = 1;
   
