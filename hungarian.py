@@ -1,6 +1,6 @@
 from munkres import Munkres, print_matrix
-from pymongo import Connection
-connection = Connection('localhost',)
+from pymongo import MongoClient
+connection = MongoClient('localhost',27017)
 db = connection.testdb
 matrix = [[5, 9, 1],
           [10, 3, 2],

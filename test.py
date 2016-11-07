@@ -1,5 +1,12 @@
 from match import Matcher
 import json
+from pymongo import MongoCient
+client = MongoClient('localhost',27017)
+db = client.room-allocation
+cursor = db.users.find()
+for document in cursor:
+	print document
+
 
 # the men and their list of ordered spousal preferences
 M = dict((m, prefs.split(', ')) for [m, prefs] in (line.rstrip().split(': ')
