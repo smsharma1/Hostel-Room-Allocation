@@ -2,24 +2,21 @@
 	<fieldset>
 		<legend> Room Mate Preference Order</legend>
 		scale:<input type="number" name="scale" min="1" max="100" step="1" value="5"> Wingmate:
-		<select name='friendlist'>
-  <option value="mayank">mayank</option>
-  <option value="aditya">aditya</option>
-  <option value="shubham">shubham</option>
-	</select>
-		<input value="Add" type="submit"><br>
+		<select ng-options="item for item in friendList" ng-model="friend"></select>
+		<button type="button" ng-click="addPref()">Add</button><br>
 	</fieldset>
 </form>
 <form>
 	<fieldset>
 		<legend> Room Preference Order</legend>
-		scale:<input type="number" name="scale" min="1" max="100" step="1" value="5"> Room:
-		<select name='room'>
-			<option ng-repeat="item in roomList">{{item}}</option>
-        </select>
-		<input value="Add" type="submit"><br>
+		scale:<input type="number" min="1" max="100" ng-model="value"> Room:
+		<select ng-options="item for item in roomList" ng-model="room"></select>
+		<button type="button" ng-click="addPref()">Add</button><br>
 	</fieldset>
 </form>
+
+{{priority}}{{room}}
+{{err}}
 <form>
 	<fieldset>
 		<legend> Other Priorities</legend>
@@ -30,6 +27,6 @@
 		<input type="radio" name="tooquiet" value="1"> tooquiet<br> Do you like to keep the lights on late at night?<input type="radio"
 			name="yes" value="1">yes
 		<input type="radio" name="no" value="0"> no<br>
-		<input value="Add" type="submit"><br>
+		<input value="Add" type="submit" ng-click="submit()"><br>
 	</fieldset>
 </form>

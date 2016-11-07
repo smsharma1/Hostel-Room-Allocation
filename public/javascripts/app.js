@@ -33,8 +33,21 @@ app.config(function($routeProvider){
     });
 });
 
-app.controller('mainController', function($scope){
+app.controller('mainController', function($scope, $http, $rootScope){
   $scope.roomList = ["A212","A213","A214","A215","A216"];
+  $scope.friendList = ["Tom","Dick","Harry","Jedi","Luke"];
+  $scope.priority = [];
+  $scope.value = 1;
+  $scope.addPref = function(){
+    $scope.priority.push({ "value":$scope.value, "room":$scope.room});
+    _.remove($scope.roomList,function(n){ return n == $scope.room });
+  }
+
+  $scope.submit = function(){
+    $http.put('/api/preference', { "username":$rootScope.current_user,"priority":$scope.priority}).success(function(data){
+      $scope.err = data;
+    })
+  }
   
 });
 
