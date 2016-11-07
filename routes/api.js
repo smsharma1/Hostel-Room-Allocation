@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+var _ = require('lodash');
 var mongoose = require('mongoose');
 var User = mongoose.model('Users');
 //Used for routes that must be authenticated.
@@ -41,6 +41,16 @@ router.put('/preference', function (req, res) {
       if (err) return res.send(err);
       return res.send(data);
     })
+});
+
+router.get('/users', function(req, res){
+  User.find({},function (err, data) {
+    var usersList = [];
+    _.forEach(data, function (value) {
+      usersList.push({username:value.username,name:value.name});
+    });
+    return res.send(usersList);
+  })
 });
 
 
