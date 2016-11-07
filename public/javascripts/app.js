@@ -1,4 +1,4 @@
-var app = angular.module('mainApp', ['ngRoute', 'ngResource', 'ngMaterial']).run(function($rootScope, $http, $location) {
+var app = angular.module('mainApp', ['ngRoute', 'ngResource', 'ngMaterial', 'ngMessages']).run(function($rootScope, $http, $location) {
   $rootScope.authenticated = false;
   $rootScope.current_user = '';
   $location.path('/login');

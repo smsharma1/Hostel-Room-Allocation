@@ -1,10 +1,35 @@
-<form ng-submit="register()">
-  <h2>Register</h2>
-  <p >{{error_message}}</p>
-  <input type="username" ng-model="user.username" placeholder="Username" ><br>
-  <input type="password" ng-model="user.password" placeholder="Password" ><br>
-  <input type="text" ng-model="user.name" placeholder="Name" ><br>
-  <input type="number" ng-model="user.hall" placeholder="Hall" ><br>
-  <input type="text" ng-model="user.prevRoom" placeholder="Room" ><br>
-  <input type="submit" value="Register"/>
+<form class="md-inline-form">
+	<md-content>
+		<section layout="row" layout-align="center center" layout-padding>
+			<h2>Register</h2>
+			<p>{{error_message}}</p>
+    </section>
+    <section layout="row" layout-align="center center" layout-padding>
+			<md-input-container>
+				<label>Username</label>
+				<input ng-model="user.username" type="text">
+			</md-input-container>
+			<md-input-container>
+				<label>Password</label>
+				<input ng-model="user.password" type="password">
+			</md-input-container>
+		</section>
+    <section layout="row" layout-align="center center" layout-padding>
+      <md-input-container>
+				<label>Name</label>
+				<input ng-model="user.name" type="text">
+			</md-input-container>
+      <md-input-container>
+				<label>Hall</label>
+				<input ng-model="user.hall" type="text">
+			</md-input-container>
+      <md-input-container>
+				<label>Room</label>
+				<input ng-model="user.prevRoom" type="text">
+			</md-input-container>
+    </section>
+    <section layout="row" layout-align="center center" layout-padding>
+			<md-button class="md-raised md-primary" ng-click="register()">Register</md-button>
+		</section>
+	</md-content>
 </form>
