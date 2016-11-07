@@ -1,5 +1,7 @@
 from munkres import Munkres, print_matrix
-
+from pymongo import Connection
+connection = Connection('localhost',)
+db = connection.testdb
 matrix = [[5, 9, 1],
           [10, 3, 2],
           [8, 7, 4]]
