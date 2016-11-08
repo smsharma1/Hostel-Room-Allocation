@@ -2,7 +2,7 @@ from match import Matcher
 import json
 from pymongo import MongoCient
 client = MongoClient('localhost',27017)
-db = client.room-allocation
+db = client["room-allocation"]
 cursor = db.users.find()
 for document in cursor:
 	print document

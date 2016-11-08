@@ -1,7 +1,10 @@
 from munkres import Munkres, print_matrix
-from pymongo import MongoClient
-connection = MongoClient('localhost',27017)
-db = connection.testdb
+from pymongo import MongoCient
+client = MongoClient('localhost',27017)
+db = client["room-allocation"]
+cursor = db.users.find()
+for document in cursor:
+        print document
 matrix = [[5, 9, 1],
           [10, 3, 2],
           [8, 7, 4]]
