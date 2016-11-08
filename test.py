@@ -9,11 +9,13 @@ for document in cursor:
     try:
         dicto = document["friendPriority"]
         name = document["name"]
+	M[name]=[]
         temp=[]
         for param in dicto:
             temp.append((param["value"],str(param["friend"])))
         temp.sort()
-        M[name]= temp
+	for param in temp:
+		M[name].append(param(0))
     except:
         continue
 print M
@@ -23,9 +25,9 @@ print M
 #                                for line in open('men.txt')))
 #print M
 # the women and their list of ordered spousal preferences
-W = dict((m, prefs.split(', ')) for [m, prefs] in (line.rstrip().split(': ')
-                                for line in open('women.txt')))
-
+#W = dict((m, prefs.split(', ')) for [m, prefs] in (line.rstrip().split(': ')
+#                                for line in open('women.txt')))
+M = W
 
 # initialize Matcher with preference lists for both men and women
 match = Matcher(M, W)
@@ -52,8 +54,6 @@ print wives
 assert is_stable(wives)             # should be a stable matching
 assert match.is_stable()            # should be a stable matching
 
-# swap the husbands of two wives, which should make the matching unstable
-wives['fay'], wives['gay'] = wives['gay'], wives['fay']
 
 assert is_stable(wives) is False    # should not be a stable matching
 
