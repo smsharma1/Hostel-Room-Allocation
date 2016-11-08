@@ -15,7 +15,7 @@ for document in cursor:
             temp.append((param["value"],str(param["friend"])))
         temp.sort()
 	for param in temp:
-		M[name].append(param(0))
+		M[name].append(param[1])
     except:
         continue
 print M
