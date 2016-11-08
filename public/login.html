@@ -1,4 +1,4 @@
-<form>
+<form ng-submit="login()">
 	<md-content>
 		<section layout="column" layout-align="center center" layout-wrap>
 			<h2>Log In</h2>
@@ -11,7 +11,7 @@
 				<label>Password</label>
 				<input ng-model="user.password" type="password">
 			</md-input-container>
-			<md-button class="md-raised md-primary" ng-click="login()">Log in</md-button>
+			<md-button class="md-raised md-primary" type="submit">Log in</md-button>
 		</section>
 	</md-content>
 </form>
