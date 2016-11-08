@@ -6,15 +6,16 @@ db = client["room-allocation"]
 cursor = db.users.find()
 M=dict()
 for document in cursor:
-	try:
-		dicto = document["friendPriority"]
-		temp=[]
-		for param in dicto:
-			temp.append((param["value"],param["name"])
-		temp.sort(key = operator.itemgetter(0))
-		M[document["name"]]= temp
-	except:
-		continue
+    try:
+        dicto = document["friendPriority"]
+        name = document["name"]
+        temp=[]
+        for param in dicto:
+            temp.append((param["value"],str(param["friend"])))
+        temp.sort()
+        M[name]= temp
+    except:
+        continue
 print M
 
 # the men and their list of ordered spousal preferences
