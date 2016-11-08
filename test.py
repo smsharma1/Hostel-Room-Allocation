@@ -5,7 +5,7 @@ client = MongoClient('localhost',27017)
 db = client["room-allocation"]
 cursor = db.users.find()
 for document in cursor:
-	print document
+	print document["friendPriority"]
 
 
 # the men and their list of ordered spousal preferences
