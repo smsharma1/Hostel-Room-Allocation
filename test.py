@@ -1,11 +1,14 @@
 from match import Matcher
 import json
-from pymongo import MongoCient
+from pymongo import MongoClient
 client = MongoClient('localhost',27017)
 db = client["room-allocation"]
 cursor = db.users.find()
 for document in cursor:
-	print document["friendPriority"]
+	try:
+		print document["friendPriority"]
+	except:
+		continue
 
 
 # the men and their list of ordered spousal preferences
