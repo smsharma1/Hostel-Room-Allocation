@@ -4,8 +4,7 @@ guyprefers = {
  '1':  ['2', '3', '4', '5', '1'],
  '2':  ['3', '4', '5', '1', '2'],
  '3':  ['4', '5', '1', '2', '3'],
- '4':  ['5', '1', '2', '3', '4'],
- '5':   ['1', '2', '3', '4', '5']}
+ '4':  ['5', '1', '2', '3', '4']}
 galprefers = {
  'abi':  ['bob', 'fred', 'jon', 'gav', 'ian', 'abe', 'dan', 'ed', 'col', 'hal'],
  'bea':  ['bob', 'abe', 'col', 'fred', 'gav', 'dan', 'ian', 'ed', 'jon', 'hal'],
@@ -53,17 +52,21 @@ def matchmaker():
     engaged  = {}
     guyprefers2 = copy.deepcopy(guyprefers)
     galprefers2 = copy.deepcopy(guyprefers)
+    print guyprefers2
     while guysfree:
         guy = guysfree.pop(0)
         guyslist = guyprefers2[guy]
         gal = guyslist.pop(0)
 	wif = engaged.get(guy)
         fiance = engaged.get(gal)
+	print("before condition")
+	print guy,gal,wif,fiance
         if not fiance and not wif:
 	    print fiance,wif	
             # She's free
             engaged[gal] = guy
             engaged[guy] = gal
+	    guysfree.remove(gal)
 	    print engaged
             print("  %s and %s" % (guy, gal))
         else:
