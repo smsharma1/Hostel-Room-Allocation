@@ -28,6 +28,23 @@ app.config(function($routeProvider){
       templateUrl: 'register.html',
       controller: 'authController'
     })
+
+    //the signup display
+    .when('/admin', {
+      templateUrl: 'admin.html',
+      controller: 'adminController'
+    })
+});
+
+app.controller('adminController',function ($scope, $http) {
+
+  $scope.stable = function () {
+    console.log('stable');
+  }
+  $scope.hung = function () {
+    console.log('hung');
+  }
+  
 });
 
 app.controller('mainController', function($scope, $http, $rootScope, $location){
