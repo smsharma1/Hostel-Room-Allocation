@@ -37,7 +37,28 @@ app.config(function($routeProvider){
 });
 
 app.controller('adminController',function ($scope, $http, $rootScope, $location) {
-  if(!$rootScope.authenticated){
+      this.tiles = buildGridModel({
+            icon : "avatar:svg-",
+            title: "Svg-",
+            background: ""
+          });
+
+    function buildGridModel(tileTmpl){
+      var it, results = [ ];
+
+      for (var j=0; j<10; j++) {
+
+        it = angular.extend({},tileTmpl);
+        it.icon  = it.icon + (j+1);
+        it.title = it.title + (j+1);
+        it.span  = { row : 1, col : 1 };
+
+        
+            it.background = "red";
+            it.span.row = it.span.col = 2;
+        results.push(it);
+      }
+if(!$rootScope.authenticated){
     $location.path('/login');
   }
 
