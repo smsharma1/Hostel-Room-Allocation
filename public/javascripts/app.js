@@ -63,7 +63,8 @@ app.controller('mainController', function($scope, $http, $rootScope, $location){
   });
   $scope.friendPriority = [];
   $scope.roomPriority = [];
-  $scope.value = 1;
+  $scope.friendValue = 100;
+  $scope.roomValue = 100;
   
   
   $http.post('/api/preference', { "username":$rootScope.current_user}).success(function(data){
