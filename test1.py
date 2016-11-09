@@ -7,11 +7,15 @@ guyprefers=dict()
 for document in cursor:
     try:
         dicto = document["friendPriority"]
+	noise = document["noise"]
+	light = document["light"]
         name = document["username"]
         guyprefers[name]=[]
         temp=[]
         for param in dicto:
-            temp.append((param["value"],str(param["friend"])))
+	    prior=param["value"]
+   	    prior = prior + 5*abs(noise - db.users.findOne({"username":param["friend"]})["noise"]) + 5*abs(light - db.users.findOne({"username":param["friend"]})["light"])
+            temp.append((prior,str(param["friend"])))
         temp.sort()
         for param in temp:
                 guyprefers[name].append(param[1])
