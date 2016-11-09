@@ -37,6 +37,9 @@ app.config(function($routeProvider){
 });
 
 app.controller('adminController',function ($scope, $http) {
+  if(!$rootScope.authenticated){
+    $location.path('/login');
+  }
 
   $scope.stable = function () {
     console.log('stable');
