@@ -1,3 +1,4 @@
+<div layout="row" layout-align="space-around">
 <md-card>
 	<md-card-title>
 		<md-card-title-text>
@@ -22,14 +23,33 @@
 		<md-button class="md-raised" ng-click="addFriendPref()">Add</md-button>
 	</md-card-actions>
 </md-card>
-<form>
-	<fieldset>
-		<legend> Room Preference Order</legend>
-		scale:<input type="number" min="1" max="100" ng-model="roomValue"> Room:
-		<select ng-options="item for item in roomList" ng-model="room"></select>
-		<button type="button" ng-click="addRoomPref()">Add</button><br>
-	</fieldset>
-</form>
+
+<md-card>
+	<md-card-title>
+		<md-card-title-text>
+			<span class="md-headline">Room Preference Order</span>
+		</md-card-title-text>
+	</md-card-title>
+	<md-card-content layout="row">
+		<md-input-container>
+			<label>Scale</label>
+			<input ng-model="roomValue" type="number" min="1" max="100">
+		</md-input-container>
+		<md-input-container>
+			<label>Rooms List</label>
+			<md-select ng-model="room">
+				<md-option ng-repeat="item in roomList" ng-value="item">
+					{{item}}
+				</md-option>
+			</md-select>
+		</md-input-container>
+	</md-card-content>
+	<md-card-actions layout="row" layout-align="end center">
+		<md-button class="md-raised" ng-click="addRoomPref()">Add</md-button>
+	</md-card-actions>
+</md-card>
+
+</div>
 
 {{friendPriority}}
 {{roomPriority}}
