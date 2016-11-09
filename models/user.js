@@ -14,4 +14,10 @@ var userSchema = new mongoose.Schema({
     light: Number
 });
 
+var adminSchema = new mongoose.Schema({
+    password: String,
+    username: String
+});
+
 mongoose.model("Users",userSchema);
+mongoose.model("Admins",adminSchema);
