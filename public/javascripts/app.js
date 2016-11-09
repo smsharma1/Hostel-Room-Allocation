@@ -55,6 +55,7 @@ app.controller('mainController', function($scope, $http, $rootScope, $location){
     $location.path('/login');
   }
   
+  
   $http.get('/api/users/'+$rootScope.current_user).success(function(data){
     $scope.friendList = data;
   });
@@ -114,7 +115,8 @@ app.controller('authController', function($scope, $http, $rootScope, $location){
       if(data.state == 'success'){
         $rootScope.authenticated = true;
         $rootScope.current_user = data.user.username;
-        $location.path('/');
+        if ($rootScope.current_user == "admin"){ $location.path('/admin'); }
+        else { $location.path('/'); }
       }
       else{
         $scope.error_message = data.message;
