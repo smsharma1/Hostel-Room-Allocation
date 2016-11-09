@@ -1,27 +1,27 @@
-<form>
-	<fieldset>
-		<legend> Room Mate Preference Order</legend>
-		scale:<input type="number" name="scale" min="1" max="100" ng-model="friendValue"> Wingmate:
-		<select ng-options="item for item in friendList" ng-model="friend"></select>
-		<button type="button" ng-click="addFriendPref()">Add</button><br>
-	</fieldset>
-</form>
 <md-card>
-        <md-card-title>
-          <md-card-title-text>
-            <span class="md-headline">Room Mate Preference Order</span>
-          </md-card-title-text>
-        </md-card-title>
-        <md-card-content>
-          <md-input-container>
-				<label>Scale</label>
-				<input ng-model="friendValue" type="number" min="1" max="100">
-			</md-input-container>
-        </md-card-content>
-        <md-card-actions layout="row" layout-align="end center">
-          <md-button ng-click="addFriendPref()">Add</md-button>
-        </md-card-actions>
-      </md-card>
+	<md-card-title>
+		<md-card-title-text>
+			<span class="md-headline">Room Mate Preference Order</span>
+		</md-card-title-text>
+	</md-card-title>
+	<md-card-content layout="row">
+		<md-input-container>
+			<label>Scale</label>
+			<input ng-model="friendValue" type="number" min="1" max="100">
+		</md-input-container>
+		<md-input-container>
+			<label>Friends List</label>
+			<md-select ng-model="friend">
+				<md-option ng-repeat="item in friendList" ng-value="item">
+					{{item}}
+				</md-option>
+			</md-select>
+		</md-input-container>
+	</md-card-content>
+	<md-card-actions layout="row" layout-align="end center">
+		<md-button class="md-raised" ng-click="addFriendPref()">Add</md-button>
+	</md-card-actions>
+</md-card>
 <form>
 	<fieldset>
 		<legend> Room Preference Order</legend>
