@@ -51,19 +51,37 @@
 
 </div>
 
+
+<div layout="row" layout-align="space-around">
+<md-card>
+	<md-card-content layout="row">
+		<div flex-gt-sm="100">
+          <md-checkbox ng-model="data.cb1" aria-label="Checkbox 1">
+            Do you like to keep the lights on late at night?
+          </md-checkbox>
+        </div>
+	</md-card-content>
+</md-card>
+
+<md-card>
+	<md-card-title>
+		<md-card-title-text>
+			<span class="md-headline">Noise Levels</span>
+		</md-card-title-text>
+	</md-card-title>
+	<md-card-content layout="row">
+		<md-radio-group ng-model="noise" layout="row">
+			<md-radio-button>Too Loud</md-radio-button>
+			<md-radio-button>Loud</md-radio-button>
+			<md-radio-button>Normal</md-radio-button>
+			<md-radio-button>Too Quiet</md-radio-button>
+			<md-radio-button>Quiet</md-radio-button>
+		</md-radio-group>
+	</md-card-content>
+</md-card>
+</div>
 {{friendPriority}}
 {{roomPriority}}
 {{err}}
-<form>
-	<fieldset>
-		<legend> Other Priorities</legend>
-		Noise Levels: <input type="radio" name="tooloud" value="5"> Too loud
-		<input type="radio" name="loud" value="4"> loud
-		<input type="radio" name="normal" value="3" checked> normal
-		<input type="radio" name="quiet" value="2"> quiet
-		<input type="radio" name="tooquiet" value="1"> tooquiet<br> Do you like to keep the lights on late at night?<input type="radio"
-			name="yes" value="1">yes
-		<input type="radio" name="no" value="0"> no<br>
-		<input value="Add" type="submit" ng-click="submit()"><br>
-	</fieldset>
-</form>
+
+<md-button class="md-raised md-primary" ng-click="submit()">Submit</md-button>
