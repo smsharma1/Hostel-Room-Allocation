@@ -53,7 +53,7 @@ app.controller('adminController',function ($scope, $http, $rootScope, $location)
     console.log('hung');
   }
       $scope.tiles = buildGridModel({
-            icon : "../../avatar/avatar",
+            icon : "../avatar/avatar",
             title: "Svg-",
             background: ""
           });
@@ -64,7 +64,7 @@ app.controller('adminController',function ($scope, $http, $rootScope, $location)
       for (var j=0; j<10; j++) {
 
         it = angular.extend({},tileTmpl);
-        it.icon  = it.icon + ((j/2)+1) + ".png";
+        it.icon  = it.icon + (Math.floor(j/2)+1) + ".png";
         it.title = it.title + (j+1);
         it.span  = { row : 1, col : 1 };
 

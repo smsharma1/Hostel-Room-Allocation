@@ -4,7 +4,7 @@
   <md-grid-list md-cols="6" md-cols-sm="6" md-cols-md="5" md-cols-gt-md="5" md-row-height-gt-md="1:1" md-row-height="4:3" md-gutter="8px" md-gutter-gt-sm="4px">
 
     <md-grid-tile ng-repeat="tile in tiles" md-rowspan="{{tile.span.row}}" md-colspan="{{tile.span.col}}" md-colspan-sm="1" md-colspan-xs="1" ng-class="tile.background">
-      <md-icon md-svg-src="{{tile.icon}}"></md-icon>
+      <img ng-src="{{tile.icon}}" class="md-card-image" alt="Washed Out" width="250px" height="300px">
       <md-grid-tile-footer><h3>{{tile.title}}</h3></md-grid-tile-footer>
     </md-grid-tile>
   </md-grid-list>
