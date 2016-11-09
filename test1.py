@@ -14,7 +14,7 @@ for document in cursor:
         temp=[]
         for param in dicto:
 	    prior=param["value"]
-   	    prior = prior + 5*abs(noise - db.users.findOne({"username":param["friend"]})["noise"]) + 5*abs(light - db.users.findOne({"username":param["friend"]})["light"])
+   	    prior = prior + 5*abs(noise - db.users.find_one({"username":param["friend"]})["noise"]) + 5*abs(light - db.users.find_one({"username":param["friend"]})["light"])
             temp.append((prior,str(param["friend"])))
         temp.sort()
         for param in temp:
@@ -32,8 +32,6 @@ guyprefers = {
 guys = sorted(guyprefers.keys())
 gals = sorted(guyprefers.keys())
 
-#print guys
-#print gals
 
 def check(engaged):
     inverseengaged = dict((v,k) for k,v in engaged.items())
@@ -104,9 +102,7 @@ def matchmaker():
  
 #print('\nEngagements:')
 engaged = matchmaker()
-#print engaged
 cursor = db.users.find()
 for document in cursor:
 	name = document["username"]
-        #print name
 	result=db.users.update_one({"username": name},{"$set": {"roomie":engaged[name]}})	
