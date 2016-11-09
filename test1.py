@@ -17,13 +17,18 @@ for document in cursor:
                 guyprefers[name].append(param[1])
     except:
         continue
+print guyprefers
+'''
 guyprefers = {
- '1':  ['2', '3', '4', '5', '1'],
- '2':  ['3', '4', '5', '1', '2'],
- '3':  ['4', '5', '1', '2', '3'],
- '4':  ['5', '1', '2', '3', '4']}
+ '1':  ['2', '3', '4', '1'],
+ '2':  ['3', '4', '1', '2'],
+ '3':  ['4', '1', '2', '3'],
+ '4':  [ '1', '2', '3', '4']}
 guys = sorted(guyprefers.keys())
 gals = sorted(guyprefers.keys())
+
+print guys
+print gals
 
 def check(engaged):
     inverseengaged = dict((v,k) for k,v in engaged.items())
@@ -69,8 +74,8 @@ def matchmaker():
             # She's free
             engaged[gal] = guy
             engaged[guy] = gal
-	    guysfree.remove(gal)
-#	    print engaged
+            guysfree.remove(gal)
+	    print engaged
 #            print("  %s and %s" % (guy, gal))
         else:
             # The bounder proposes to an engaged lass!
@@ -98,4 +103,4 @@ print engaged
 for document in cursor:
 	name = document["name"]
 	result=db.users.update_one({"name": name},{"$set": {"roomie":engaged[name]}})	
-
+'''
