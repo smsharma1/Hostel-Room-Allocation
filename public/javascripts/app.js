@@ -11,7 +11,7 @@ var app = angular.module('mainApp', ['ngRoute', 'ngResource', 'ngMaterial', 'ngM
   };
 });
 
-app.config(function($routeProvider){
+app.config(function($routeProvider, $mdIconProvider){
   $routeProvider
     //the timeline display
     .when('/', {
@@ -33,11 +33,26 @@ app.config(function($routeProvider){
     .when('/admin', {
       templateUrl: 'admin.html',
       controller: 'adminController'
-    })
+    });
+    $mdIconProvider.iconSet("avatar", 'icons/avatar-icons.svg', 128);
 });
 
 app.controller('adminController',function ($scope, $http, $rootScope, $location) {
-      this.tiles = buildGridModel({
+      
+      if(!$rootScope.authenticated){
+    $location.path('/login');
+  }
+
+  $scope.stable = function () {
+    console.log('stable');
+    $http.get('/api/stable').success(function(data){
+      console.log(data);
+    })
+  }
+  $scope.hung = function () {
+    console.log('hung');
+  }
+      $scope.tiles = buildGridModel({
             icon : "avatar:svg-",
             title: "Svg-",
             background: ""
@@ -53,25 +68,11 @@ app.controller('adminController',function ($scope, $http, $rootScope, $location)
         it.title = it.title + (j+1);
         it.span  = { row : 1, col : 1 };
 
-        
             it.background = "red";
-            it.span.row = it.span.col = 2;
         results.push(it);
       }
-if(!$rootScope.authenticated){
-    $location.path('/login');
-  }
-
-  $scope.stable = function () {
-    console.log('stable');
-    $http.get('/api/stable').success(function(data){
-      console.log(data);
-    })
-  }
-  $scope.hung = function () {
-    console.log('hung');
-  }
-  
+      return results;
+    }
 });
 
 app.controller('mainController', function($scope, $http, $rootScope, $location){
@@ -93,8 +94,8 @@ app.controller('mainController', function($scope, $http, $rootScope, $location){
   
   
   $http.post('/api/preference', { "username":$rootScope.current_user}).success(function(data){
-      $scope.friendPriority = data.friendPriority;
-      $scope.roomPriority = data.roomPriority;
+      //$scope.friendPriority = data.friendPriority;
+      //$scope.roomPriority = data.roomPriority;
       $scope.noise = data.noise;
       if(data.light) { $scope.light = true; }
       else { $scope.light = false; }
