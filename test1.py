@@ -22,13 +22,6 @@ for document in cursor:
     except:
         continue
 #print guyprefers
-'''
-guyprefers = {
- '1':  ['2', '3', '4', '1'],
- '2':  ['3', '4', '1', '2'],
- '3':  ['4', '1', '2', '3'],
- '4':  [ '1', '2', '3', '4']}'''
-'''guyprefers = {'tom': ['dick', 'jedi', 'luke', 'voldemort', 'darth', 'dumbledore', 'harry', 'pikachu', 'strange'],'dumbledore': ['harry', 'luke', 'voldemort', 'darth', 'dick', 'jedi', 'pikachu', 'strange', 'tom'], 'luke': ['darth', 'dumbledore', 'jedi', 'dick', 'dude', 'harry', 'pikachu', 'strange', 'tom', 'voldemort'], 'pikachu': ['darth', 'dick', 'jedi', 'dumbledore', 'harry', 'luke', 'strange', 'tom', 'voldemort'], 'dick': ['dumbledore', 'tom', 'voldemort', 'darth', 'jedi', 'strange', 'harry', 'luke', 'pikachu'], 'darth': ['dumbledore', 'harry', 'luke', 'dick', 'jedi', 'pikachu', 'strange', 'tom', 'voldemort'], 'voldemort': ['dumbledore', 'harry', 'luke', 'darth', 'dick', 'jedi', 'pikachu', 'strange', 'tom'], 'jedi': ['dick', 'dumbledore', 'harry', 'voldemort', 'darth', 'luke', 'pikachu', 'strange', 'tom'], 'strange': ['darth', 'dick', 'harry', 'luke', 'dumbledore', 'jedi', 'pikachu', 'tom', 'voldemort'], 'harry': ['dumbledore', 'jedi', 'luke', 'darth', 'dick', 'pikachu', 'strange', 'tom', 'voldemort']}'''
 guys = sorted(guyprefers.keys())
 gals = sorted(guyprefers.keys())
 
