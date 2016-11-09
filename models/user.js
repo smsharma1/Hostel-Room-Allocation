@@ -9,7 +9,9 @@ var userSchema = new mongoose.Schema({
     friendPriority: Array,
     roomPriority: Array,
     finalRoom: String,
-    roomie: String
+    roomie: String,
+    noise: Number,
+    light: Number
 });
 
 mongoose.model("Users",userSchema);

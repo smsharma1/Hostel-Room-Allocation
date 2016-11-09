@@ -40,6 +40,9 @@ app.controller('adminController',function ($scope, $http) {
 
   $scope.stable = function () {
     console.log('stable');
+    $http.get('/api/stable').success(function(data){
+      console.log(data);
+    })
   }
   $scope.hung = function () {
     console.log('hung');

@@ -69,4 +69,10 @@ router.get('/rooms', function(req, res){
   })
 });
 
+router.get('/stable', function(req, res){
+  var spawn = require("child_process").spawn;
+  var process = spawn('python2',["test1.py"]);
+  return res.send({"msg":"stable execuetd"});
+})
+
 module.exports = router;
