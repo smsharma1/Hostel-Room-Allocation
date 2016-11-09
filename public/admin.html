@@ -1,9 +1,9 @@
 <md-button class="md-raised md-primary" ng-click="stable()">Stable marriage</md-button>
 <md-button class="md-raised md-primary" ng-click="hung()">Hungarian</md-button>
-<div ng-controller="gridListDemoCtrl as vm" flex="" ng-cloak="" class="gridListdemoDynamicTiles" ng-app="MyApp">
-  <md-grid-list md-cols="2" md-cols-sm="2" md-cols-md="2" md-cols-gt-md="2" md-row-height-gt-md="1:1" md-row-height="4:3" md-gutter="8px" md-gutter-gt-sm="4px">
+<div flex="" class="gridListdemoDynamicTiles">
+  <md-grid-list md-cols="6" md-cols-sm="6" md-cols-md="5" md-cols-gt-md="5" md-row-height-gt-md="1:1" md-row-height="4:3" md-gutter="8px" md-gutter-gt-sm="4px">
 
-    <md-grid-tile ng-repeat="tile in vm.tiles" md-rowspan="{{tile.span.row}}" md-colspan="{{tile.span.col}}" md-colspan-sm="1" md-colspan-xs="1" ng-class="tile.background">
+    <md-grid-tile ng-repeat="tile in tiles" md-rowspan="{{tile.span.row}}" md-colspan="{{tile.span.col}}" md-colspan-sm="1" md-colspan-xs="1" ng-class="tile.background">
       <md-icon md-svg-icon="{{tile.icon}}"></md-icon>
       <md-grid-tile-footer><h3>{{tile.title}}</h3></md-grid-tile-footer>
     </md-grid-tile>
