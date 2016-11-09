@@ -78,7 +78,15 @@ router.get('/rooms', function(req, res){
 router.get('/stable', function(req, res){
   var spawn = require("child_process").spawn;
   var process = spawn('python2',["test1.py"]);
-  return res.send({"msg":"stable execuetd"});
+  User.find({}, function(err, data){
+    var pairs = {};
+    _.forEach(data, function (value) {
+      if(! _.has(pairs,value.roomie ))
+       { 
+      pairs[value.username] = value.roomie;
+    }});
+    return res.send(pairs);
+  })
 })
 
 module.exports = router;

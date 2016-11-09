@@ -47,32 +47,41 @@ app.controller('adminController',function ($scope, $http, $rootScope, $location)
     console.log('stable');
     $http.get('/api/stable').success(function(data){
       console.log(data);
+        $scope.tiles = buildGridModel({
+            icon : "../avatar/avatar",
+            title: ""
+          });
+
+    function buildGridModel(tileTmpl){
+      var it, results = [ ];
+      var j = 1;
+      _.forEach(data, function(value, key) {
+
+        it = angular.extend({},tileTmpl);
+        it.icon  = it.icon + j + ".png";
+        it.title = value;
+        it.span  = { row : 1, col : 1 };
+        results.push(it);
+        j++;
+      });
+      j = 1;
+      _.forEach(data, function(value, key) {
+
+        it = angular.extend({},tileTmpl);
+        it.icon  = it.icon + j + ".png";
+        it.title = key;
+        it.span  = { row : 1, col : 1 };
+        results.push(it);
+        j++;
+      });
+      return results;
+    }
     })
   }
   $scope.hung = function () {
     console.log('hung');
   }
-      $scope.tiles = buildGridModel({
-            icon : "../avatar/avatar",
-            title: "Svg-",
-            background: ""
-          });
-
-    function buildGridModel(tileTmpl){
-      var it, results = [ ];
-
-      for (var j=0; j<10; j++) {
-
-        it = angular.extend({},tileTmpl);
-        it.icon  = it.icon + (Math.floor(j/2)+1) + ".png";
-        it.title = it.title + (j+1);
-        it.span  = { row : 1, col : 1 };
-
-            it.background = "red";
-        results.push(it);
-      }
-      return results;
-    }
+    
 });
 
 app.controller('mainController', function($scope, $http, $rootScope, $location){
