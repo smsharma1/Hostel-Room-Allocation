@@ -7,7 +7,7 @@ guyprefers=dict()
 for document in cursor:
     try:
         dicto = document["friendPriority"]
-        name = document["name"]
+        name = document["username"]
         guyprefers[name]=[]
         temp=[]
         for param in dicto:
@@ -17,18 +17,19 @@ for document in cursor:
                 guyprefers[name].append(param[1])
     except:
         continue
-print guyprefers
+#print guyprefers
 '''
 guyprefers = {
  '1':  ['2', '3', '4', '1'],
  '2':  ['3', '4', '1', '2'],
  '3':  ['4', '1', '2', '3'],
- '4':  [ '1', '2', '3', '4']}
+ '4':  [ '1', '2', '3', '4']}'''
+guyprefers = {'tom': ['dick', 'jedi', 'luke', 'voldemort', 'darth', 'dumbledore', 'harry', 'pikachu', 'strange'],'dumbledore': ['harry', 'luke', 'voldemort', 'darth', 'dick', 'jedi', 'pikachu', 'strange', 'tom'], 'luke': ['darth', 'dumbledore', 'jedi', 'dick', 'dude', 'harry', 'pikachu', 'strange', 'tom', 'voldemort'], 'pikachu': ['darth', 'dick', 'jedi', 'dumbledore', 'harry', 'luke', 'strange', 'tom', 'voldemort'], 'dick': ['dumbledore', 'tom', 'voldemort', 'darth', 'jedi', 'strange', 'harry', 'luke', 'pikachu'], 'darth': ['dumbledore', 'harry', 'luke', 'dick', 'jedi', 'pikachu', 'strange', 'tom', 'voldemort'], 'voldemort': ['dumbledore', 'harry', 'luke', 'darth', 'dick', 'jedi', 'pikachu', 'strange', 'tom'], 'jedi': ['dick', 'dumbledore', 'harry', 'voldemort', 'darth', 'luke', 'pikachu', 'strange', 'tom'], 'strange': ['darth', 'dick', 'harry', 'luke', 'dumbledore', 'jedi', 'pikachu', 'tom', 'voldemort'], 'harry': ['dumbledore', 'jedi', 'luke', 'darth', 'dick', 'pikachu', 'strange', 'tom', 'voldemort']}
 guys = sorted(guyprefers.keys())
 gals = sorted(guyprefers.keys())
 
-print guys
-print gals
+#print guys
+#print gals
 
 def check(engaged):
     inverseengaged = dict((v,k) for k,v in engaged.items())
@@ -75,7 +76,7 @@ def matchmaker():
             engaged[gal] = guy
             engaged[guy] = gal
             guysfree.remove(gal)
-	    print engaged
+#	    print engaged
 #            print("  %s and %s" % (guy, gal))
         else:
             # The bounder proposes to an engaged lass!
@@ -103,4 +104,3 @@ print engaged
 for document in cursor:
 	name = document["name"]
 	result=db.users.update_one({"name": name},{"$set": {"roomie":engaged[name]}})	
-'''
