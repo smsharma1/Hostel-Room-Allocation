@@ -67,7 +67,11 @@ app.controller('mainController', function($scope, $http, $rootScope, $location){
   
   
   $http.post('/api/preference', { "username":$rootScope.current_user}).success(function(data){
-      $scope.err = data;
+      $scope.friendPriority = data.friendPriority;
+      $scope.roomPriority = data.roomPriority;
+      $scope.noise = data.noise;
+      if(data.light) { $scope.light = true; }
+      else { $scope.light = false; }
   });
 
   $scope.addFriendPref = function(){
@@ -90,7 +94,9 @@ app.controller('mainController', function($scope, $http, $rootScope, $location){
     $http.put('/api/preference', { 
       "username":$rootScope.current_user,
       "friendPriority":$scope.friendPriority,
-      "roomPriority":$scope.roomPriority
+      "roomPriority":$scope.roomPriority,
+      "noise": $scope.noise,
+      "light":$scope.light
     }).success(function(data){
       $scope.err = data;
     })

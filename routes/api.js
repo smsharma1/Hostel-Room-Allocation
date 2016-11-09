@@ -31,15 +31,21 @@ router.post('/preference', function (req, res) {
       "hall": data[0].hall,
       "prevRoom": data[0].prevRoom,
       "friendPriority": data[0].friendPriority,
-      "roomPriority": data[0].roomPriority
+      "roomPriority": data[0].roomPriority,
+      "noise": data[0].noise,
+      "light": data[0].light
     });
   })
 });
 
 router.put('/preference', function (req, res) {
+  var temp = 0;
+  if( req.body.light){ temp = 1; }
   User.findOneAndUpdate({ "username": req.body.username }, { $set: { 
     friendPriority: req.body.friendPriority,
     roomPriority: req.body.roomPriority,
+    noise: req.body.noise,
+    light: temp
    } },
     function (err, data) {
       if (err) return res.send(err);
