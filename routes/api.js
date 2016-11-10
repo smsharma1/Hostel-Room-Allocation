@@ -95,9 +95,7 @@ router.get('/hung', function (req, res) {
   User.find({}, function (err, data) {
     var pairs = {};
     _.forEach(data, function (value) {
-      if (!_.has(pairs, value.roomie)) {
-        pairs[value.username] = value.finalRoom;
-      }
+      pairs[value.username] = value.finalRoom;
     });
     return res.send(pairs);
   })

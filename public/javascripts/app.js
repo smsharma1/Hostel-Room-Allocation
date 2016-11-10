@@ -37,54 +37,58 @@ app.config(function($routeProvider, $mdIconProvider){
     $mdIconProvider.iconSet("avatar", 'icons/avatar-icons.svg', 128);
 });
 
-app.controller('adminController',function ($scope, $http, $rootScope, $location) {
-      
-      if(!$rootScope.authenticated){
+app.controller('adminController', function ($scope, $http, $rootScope, $location) {
+
+  if (!$rootScope.authenticated) {
     $location.path('/login');
   }
 
   $scope.stable = function () {
     console.log('stable');
-    $http.get('/api/stable').success(function(data){
+    $http.get('/api/stable').success(function (data) {
       console.log(data);
-        $scope.tiles = buildGridModel({
-            icon : "../avatar/avatar",
-            title: ""
-          });
-
-    function buildGridModel(tileTmpl){
-      var it, results = [ ];
-      var j = 1;
-      _.forEach(data, function(value, key) {
-
-        it = angular.extend({},tileTmpl);
-        it.icon  = it.icon + j + ".png";
-        it.title = value;
-        it.span  = { row : 1, col : 1 };
-        results.push(it);
-        j++;
+      $scope.tiles = buildGridModel({
+        icon: "../avatar/avatar",
+        title: ""
       });
-      j = 1;
-      _.forEach(data, function(value, key) {
 
-        it = angular.extend({},tileTmpl);
-        it.icon  = it.icon + j + ".png";
-        it.title = key;
-        it.span  = { row : 1, col : 1 };
-        results.push(it);
-        j++;
-      });
-      return results;
-    }
-    })
+      function buildGridModel(tileTmpl) {
+        var it, results = [];
+        var j = 1;
+        _.forEach(data, function (value, key) {
+
+          it = angular.extend({}, tileTmpl);
+          it.icon = it.icon + j + ".png";
+          it.title = key;
+          it.span = { row: 1, col: 1 };
+          results.push(it);
+          j++;
+        });
+        j = 1;
+        _.forEach(data, function (value, key) {
+
+          it = angular.extend({}, tileTmpl);
+          it.icon = it.icon + j + ".png";
+          it.title = value;
+          it.span = { row: 1, col: 1 };
+          results.push(it);
+          j++;
+        });
+        return results;
+      }
+    });
   }
   $scope.hung = function () {
     console.log('hung');
-    $http.get('/api/hung').success(function(data){
+    $http.get('/api/hung').success(function (data) {
       console.log(data);
+      _.forEach($scope.tiles, function(value){
+        var name = value.title;
+        value.title = name + " (" + data[name] + ")"; 
+      });
     });
   }
-    
+
 });
 
 app.controller('mainController', function($scope, $http, $rootScope, $location){
