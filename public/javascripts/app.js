@@ -8,10 +8,11 @@ var app = angular.module('mainApp', ['ngRoute', 'ngResource', 'ngMaterial', 'ngM
     $http.get('/auth/signout');
     $rootScope.authenticated = false;
     $rootScope.current_user = '';
+    $rootScope.currentNavItem = 'login';
   };
 });
 
-app.config(function($routeProvider, $mdIconProvider){
+app.config(function($routeProvider){
   $routeProvider
     //the timeline display
     .when('/', {
@@ -33,16 +34,23 @@ app.config(function($routeProvider, $mdIconProvider){
     .when('/admin', {
       templateUrl: 'admin.html',
       controller: 'adminController'
+    })
+    .when('/request', {
+      templateUrl: 'request.html',
+      controller: 'requestController'
     });
-    $mdIconProvider.iconSet("avatar", 'icons/avatar-icons.svg', 128);
 });
 
+
+app.controller('requestController', function($rootScope){
+  $rootScope.currentNavItem = 'request';
+});
 app.controller('adminController', function ($scope, $http, $rootScope, $location) {
 
   if (!$rootScope.authenticated) {
     $location.path('/login');
   }
-
+  $rootScope.currentNavItem = 'logout';
   $scope.stable = function () {
     console.log('stable');
     $http.get('/api/stable').success(function (data) {
@@ -95,7 +103,7 @@ app.controller('mainController', function($scope, $http, $rootScope, $location){
   if(!$rootScope.authenticated){
     $location.path('/login');
   }
-  
+  $rootScope.currentNavItem = 'pref';
   
   $http.get('/api/users/'+$rootScope.current_user).success(function(data){
     $scope.friendList = data;
