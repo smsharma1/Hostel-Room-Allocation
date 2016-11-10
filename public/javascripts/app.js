@@ -80,6 +80,9 @@ app.controller('adminController',function ($scope, $http, $rootScope, $location)
   }
   $scope.hung = function () {
     console.log('hung');
+    $http.get('/api/hung').success(function(data){
+      console.log(data);
+    });
   }
     
 });

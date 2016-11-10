@@ -75,16 +75,30 @@ router.get('/rooms', function(req, res){
   })
 });
 
-router.get('/stable', function(req, res){
+router.get('/stable', function (req, res) {
   var spawn = require("child_process").spawn;
-  var process = spawn('python2',["test1.py"]);
-  User.find({}, function(err, data){
+  var process = spawn('python2', ["test1.py"]);
+  User.find({}, function (err, data) {
     var pairs = {};
     _.forEach(data, function (value) {
-      if(! _.has(pairs,value.roomie ))
-       { 
-      pairs[value.username] = value.roomie;
-    }});
+      if (!_.has(pairs, value.roomie)) {
+        pairs[value.username] = value.roomie;
+      }
+    });
+    return res.send(pairs);
+  })
+});
+
+router.get('/hung', function (req, res) {
+  var spawn = require("child_process").spawn;
+  var process = spawn('python2', ["hungarian.py"]);
+  User.find({}, function (err, data) {
+    var pairs = {};
+    _.forEach(data, function (value) {
+      if (!_.has(pairs, value.roomie)) {
+        pairs[value.username] = value.finalRoom;
+      }
+    });
     return res.send(pairs);
   })
 })
