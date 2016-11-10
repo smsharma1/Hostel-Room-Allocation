@@ -64,7 +64,14 @@ app.controller('requestController', function($rootScope, $http, $scope){
     .success(function(data){
       console.log(data);
     })
-  }
+  };
+
+  $scope.accept = function (item) {
+    $http.get('/api/accept/'+$rootScope.current_user+'/'+item.name+'/'+$scope.room)
+    .success(function(data){
+      console.log(data);
+    })
+  };
 });
 app.controller('adminController', function ($scope, $http, $rootScope, $location) {
 

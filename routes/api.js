@@ -121,8 +121,28 @@ router.get('/request/:fromuser/:touser/:room', function (req, res) {
   }},function (err, data) {
     User.findOneAndUpdate({"username":req.params.touser}, {$addToSet:{
       "fromRequestList":{"name":req.params.fromuser, "room":req.params.room}
-    }},function (err, data) {
+    }},function (err1, data1) {
       return res.send({"status":true});
+    });
+  });
+});
+
+router.get('/accept/:fromuser/:touser/:room', function (req, res) {
+  User.find({ "username": req.params.touser }, function (err, data) {
+    var fromRoom = req.params.room;
+    var toRoom = data[0].finalRoom;
+    User.findOneAndUpdate({ "username": req.params.touser }, {
+      $set: {
+        "finalRoom": fromRoom
+      }
+    }, function (err1, data1) {
+      User.findOneAndUpdate({ "username": req.params.fromuser }, {
+        $set: {
+          "finalRoom": toRoom
+        }
+      }, function (err2, data2) {
+        return res.send({ "status": true });
+      });
     });
   });
 });
