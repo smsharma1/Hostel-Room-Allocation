@@ -110,8 +110,14 @@ app.controller('mainController', function($scope, $http, $rootScope, $location){
   
   
   $http.post('/api/preference', { "username":$rootScope.current_user}).success(function(data){
-      //$scope.friendPriority = data.friendPriority;
-      //$scope.roomPriority = data.roomPriority;
+      $scope.friendPriority = data.friendPriority;
+      _.forEach($scope.friendPriority, function(value){
+        _.remove($scope.friendList,function(n){ return n == value.friend });
+      })
+      $scope.roomPriority = data.roomPriority;
+      _.forEach($scope.roomPriority, function(value){
+        _.remove($scope.roomList,function(n){ return n == value.room });
+      })
       $scope.noise = data.noise;
       if(data.light) { $scope.light = true; }
       else { $scope.light = false; }
@@ -121,10 +127,20 @@ app.controller('mainController', function($scope, $http, $rootScope, $location){
     $scope.friendPriority.push({ "value":$scope.friendValue, "friend":$scope.friend});
     _.remove($scope.friendList,function(n){ return n == $scope.friend });
   }
+  
+  $scope.deleteFriend = function(item){
+    $scope.friendList.push(item.friend);
+    _.remove($scope.friendPriority,function(n){ return n.friend == item.friend });
+  }
 
   $scope.addRoomPref = function(){
     $scope.roomPriority.push({ "value":$scope.roomValue, "room":$scope.room});
     _.remove($scope.roomList,function(n){ return n == $scope.room });
+  }
+
+  $scope.deleteRoom = function(item){
+    $scope.roomList.push(item.room);
+    _.remove($scope.roomPriority,function(n){ return n.room == item.room });
   }
 
   $scope.submit = function(){
