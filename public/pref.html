@@ -1,112 +1,111 @@
 <div layout="row" layout-align="space-around">
-<md-card>
-	<md-card-title>
-		<md-card-title-text>
-			<span class="md-headline">Room Mate Preference Order</span>
-		</md-card-title-text>
-	</md-card-title>
-	<md-card-content>
-		<md-content>
-			<md-list  class="md-dense" flex>
-				<md-list-item ng-repeat="item in friendPriority">
-					<div class="md-list-item-text" layout="column">
-						<h3>{{ item.friend}} {{item.value}}</h3>
-					</div>
-					<md-button class="md-secondary md-raised md-warn" ng-click="deleteFriend(item)">
-						delete
-					</md-button>
-				</md-list-item>
-			</md-list>
-		</md-content>
-		<div layout="row">
-			<md-input-container>
-				<label>Scale</label>
-				<input ng-model="friendValue" type="number" min="1" max="10">
-			</md-input-container>
-			<md-input-container>
-				<label>Friends List</label>
-				<md-select ng-model="friend">
-					<md-option ng-repeat="item in friendList" ng-value="item">
-						{{item}}
-					</md-option>
-				</md-select>
-			</md-input-container>
-		</div>
-	</md-card-content>
-	<md-card-actions layout="row" layout-align="end center">
-		<md-button class="md-raised" ng-click="addFriendPref()">Add</md-button>
-	</md-card-actions>
-</md-card>
+	<div layout="column">
+		<md-card>
+			<md-card-title>
+				<md-card-title-text>
+					<span class="md-headline">Room Mate Preference Order</span>
+				</md-card-title-text>
+			</md-card-title>
+			<md-card-content>
+				<md-content>
+					<md-list  class="md-dense" flex>
+						<md-list-item ng-repeat="item in friendPriority">
+							<div class="md-list-item-text" layout="column">
+								<h3>{{ item.friend}} {{item.value}}</h3>
+							</div>
+							<md-button class="md-secondary md-raised md-warn" ng-click="deleteFriend(item)">
+								delete
+							</md-button>
+						</md-list-item>
+					</md-list>
+				</md-content>
+				<div layout="row">
+					<md-input-container>
+						<label>Scale</label>
+						<input ng-model="friendValue" type="number" min="1" max="10">
+					</md-input-container>
+					<md-input-container>
+						<label>Friends List</label>
+						<md-select ng-model="friend">
+							<md-option ng-repeat="item in friendList" ng-value="item">
+								{{item}}
+							</md-option>
+						</md-select>
+					</md-input-container>
+				</div>
+			</md-card-content>
+			<md-card-actions layout="row" layout-align="end center">
+				<md-button class="md-raised" ng-click="addFriendPref()">Add</md-button>
+			</md-card-actions>
+		</md-card>
+	</div>
+	<div layout="column">
+		<md-card>
+			<md-card-title>
+				<md-card-title-text>
+					<span class="md-headline">Room Preference Order</span>
+				</md-card-title-text>
+			</md-card-title>
+			<md-card-content>
+				<md-content>
+					<md-list  class="md-dense" flex>
+						<md-list-item ng-repeat="item in roomPriority">
+							<div class="md-list-item-text" layout="column">
+								<h3>{{ item.room}} {{item.value}}</h3>
+							</div>
+							<md-button class="md-secondary md-raised md-warn" ng-click="deleteRoom(item)">
+								delete
+							</md-button>
+						</md-list-item>
+					</md-list>
+				</md-content>
+				<div layout="row">
+					<md-input-container>
+						<label>Scale</label>
+						<input ng-model="roomValue" type="number" min="1" max="10">
+					</md-input-container>
+					<md-input-container>
+						<label>Rooms List</label>
+						<md-select ng-model="room">
+							<md-option ng-repeat="item in roomList" ng-value="item">
+								{{item}}
+							</md-option>
+						</md-select>
+					</md-input-container>
+				</div>
+			</md-card-content>
+			<md-card-actions layout="row" layout-align="end center">
+				<md-button class="md-raised" ng-click="addRoomPref()">Add</md-button>
+			</md-card-actions>
+		</md-card>
+		<md-card>
+			<md-card-content layout="row">
+				<div flex-gt-sm="100">
+				<md-checkbox ng-model="light">
+					Do you like to keep the lights on late at night?
+				</md-checkbox>
+				</div>
+			</md-card-content>
+		</md-card>
 
-<md-card>
-	<md-card-title>
-		<md-card-title-text>
-			<span class="md-headline">Room Preference Order</span>
-		</md-card-title-text>
-	</md-card-title>
-	<md-card-content>
-		<md-content>
-			<md-list  class="md-dense" flex>
-				<md-list-item ng-repeat="item in roomPriority">
-					<div class="md-list-item-text" layout="column">
-						<h3>{{ item.room}} {{item.value}}</h3>
-					</div>
-					<md-button class="md-secondary md-raised md-warn" ng-click="deleteRoom(item)">
-						delete
-					</md-button>
-				</md-list-item>
-			</md-list>
-		</md-content>
-		<div layout="row">
-			<md-input-container>
-				<label>Scale</label>
-				<input ng-model="roomValue" type="number" min="1" max="10">
-			</md-input-container>
-			<md-input-container>
-				<label>Rooms List</label>
-				<md-select ng-model="room">
-					<md-option ng-repeat="item in roomList" ng-value="item">
-						{{item}}
-					</md-option>
-				</md-select>
-			</md-input-container>
-		</div>
-	</md-card-content>
-	<md-card-actions layout="row" layout-align="end center">
-		<md-button class="md-raised" ng-click="addRoomPref()">Add</md-button>
-	</md-card-actions>
-</md-card>
-
+		<md-card>
+			<md-card-title>
+				<md-card-title-text>
+					<span class="md-headline">Noise Levels</span>
+				</md-card-title-text>
+			</md-card-title>
+			<md-card-content layout="row">
+				<md-radio-group ng-model="noise" layout="row">
+					<md-radio-button ng-value="5">Too Loud</md-radio-button>
+					<md-radio-button ng-value="4">Loud</md-radio-button>
+					<md-radio-button ng-value="3">Normal</md-radio-button>
+					<md-radio-button ng-value="2">Quiet</md-radio-button>
+					<md-radio-button ng-value="1">Too Quiet</md-radio-button>
+				</md-radio-group>
+			</md-card-content>
+		</md-card>
+	</div>
 </div>
-<div layout="row" layout-align="space-around">
-<md-card>
-	<md-card-content layout="row">
-		<div flex-gt-sm="100">
-          <md-checkbox ng-model="light">
-            Do you like to keep the lights on late at night?
-          </md-checkbox>
-        </div>
-	</md-card-content>
-</md-card>
-
-<md-card>
-	<md-card-title>
-		<md-card-title-text>
-			<span class="md-headline">Noise Levels</span>
-		</md-card-title-text>
-	</md-card-title>
-	<md-card-content layout="row">
-		<md-radio-group ng-model="noise" layout="row">
-			<md-radio-button ng-value="5">Too Loud</md-radio-button>
-			<md-radio-button ng-value="4">Loud</md-radio-button>
-			<md-radio-button ng-value="3">Normal</md-radio-button>
-			<md-radio-button ng-value="2">Quiet</md-radio-button>
-			<md-radio-button ng-value="1">Too Quiet</md-radio-button>
-		</md-radio-group>
-	</md-card-content>
-</md-card>
+<div layout="row" layout-align="end">
+	<md-button class="md-raised md-primary" ng-click="submit()">Submit</md-button>
 </div>
-{{friendPriority}}
-{{roomPriority}}
-
-<md-button class="md-raised md-primary" ng-click="submit()">Submit</md-button>
