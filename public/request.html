@@ -1,0 +1,30 @@
+<md-toolbar layout="row" class="md-hue-3">
+	<div class="md-toolbar-tools">
+		<span>Your Room:{{room}}</span>
+	</div>
+</md-toolbar>
+<md-content>
+	<md-subheader class="md-no-sticky">Request to change your room</md-subheader>
+	<md-list class="md-dense" flex>
+		<md-list-item ng-repeat="item in friendList">
+			<div class="md-list-item-text" layout="column">
+				<h3>{{ item.name}} {{item.room}}</h3>
+			</div>
+			<md-button class="md-secondary md-raised md-primary" ng-click="request(item)">
+				request
+			</md-button>
+		</md-list-item>
+	</md-list>
+	<md-divider ></md-divider>
+	<md-subheader class="md-no-sticky">Request from other Friends</md-subheader>
+	<md-list class="md-dense" flex>
+		<md-list-item ng-repeat="item in fromRequestList">
+			<div class="md-list-item-text" layout="column">
+				<h3>{{ item.name}} {{item.room}}</h3>
+			</div>
+			<md-button class="md-secondary md-raised md-warn" ng-click="accept(item)">
+				accept
+			</md-button>
+		</md-list-item>
+	</md-list>
+</md-content>

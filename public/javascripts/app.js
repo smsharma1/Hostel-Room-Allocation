@@ -42,8 +42,29 @@ app.config(function($routeProvider){
 });
 
 
-app.controller('requestController', function($rootScope){
+app.controller('requestController', function($rootScope, $http, $scope){
   $rootScope.currentNavItem = 'request';
+
+  $http.get('/api/finalList/'+$rootScope.current_user).success(function(data){
+    $scope.friendList = data;
+  });
+  $http.get('/api/requestList/'+$rootScope.current_user).success(function(data){
+    $scope.fromRequestList = data.fromList;
+    $scope.room = data.room;
+    _.forEach(data.toList, function(value){
+      _.remove($scope.friendList, function(n){ return n.name==value.name})
+    });
+    _.forEach(data.fromList, function(value){
+      _.remove($scope.friendList, function(n){ return n.name==value.name})
+    });
+  });
+  
+  $scope.request = function (item) {
+    $http.get('/api/request/'+$rootScope.current_user+'/'+item.name+'/'+$scope.room)
+    .success(function(data){
+      console.log(data);
+    })
+  }
 });
 app.controller('adminController', function ($scope, $http, $rootScope, $location) {
 

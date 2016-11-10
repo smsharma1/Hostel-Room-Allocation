@@ -11,7 +11,9 @@ var userSchema = new mongoose.Schema({
     finalRoom: String,
     roomie: String,
     noise: Number,
-    light: Number
+    light: Number,
+    fromRequestList: Array,
+    toRequestList: Array
 });
 
 var adminSchema = new mongoose.Schema({

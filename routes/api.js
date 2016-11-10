@@ -23,6 +23,8 @@ function isAuthenticated (req, res, next) {
 
 //Register the authentication middleware
 router.use('/preference', isAuthenticated);
+router.use('/stable', isAuthenticated);
+router.use('/hung', isAuthenticated);
 
 router.post('/preference', function (req, res) {
   User.find({ "username": req.body.username }, function (err, data) {
@@ -99,6 +101,39 @@ router.get('/hung', function (req, res) {
     });
     return res.send(pairs);
   })
-})
+});
+
+router.get('/finalList/:username', function(req, res){
+  User.find({},function (err, data) {
+    var usersList = [];
+    _.forEach(data, function (value) {
+      if(value.username != req.params.username) {
+        usersList.push({ "name":value.username,"room":value.finalRoom});
+      }
+    });
+    return res.send(usersList);
+  })
+});
+
+router.get('/request/:fromuser/:touser/:room', function (req, res) {
+  User.findOneAndUpdate({"username":req.params.fromuser}, {$addToSet:{
+    "toRequestList":{"name":req.params.touser}
+  }},function (err, data) {
+    User.findOneAndUpdate({"username":req.params.touser}, {$addToSet:{
+      "fromRequestList":{"name":req.params.fromuser, "room":req.params.room}
+    }},function (err, data) {
+      return res.send({"status":true});
+    });
+  });
+});
+
+router.get('/requestList/:username', function (req, res) {
+  User.find({"username":req.params.username}, function(err,data){
+    return res.send({
+      "room":data[0].finalRoom,
+      "fromList":data[0].fromRequestList,
+      "toList":data[0].toRequestList});
+  })
+});
 
 module.exports = router;

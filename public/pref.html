@@ -22,7 +22,7 @@
 				<div layout="row">
 					<md-input-container>
 						<label>Scale</label>
-						<input ng-model="friendValue" type="number" min="1" max="10">
+						<input ng-model="friendValue" type="number" min="1" max="100">
 					</md-input-container>
 					<md-input-container>
 						<label>Friends List</label>
@@ -51,7 +51,7 @@
 					<md-list  class="md-dense" flex>
 						<md-list-item ng-repeat="item in roomPriority">
 							<div class="md-list-item-text" layout="column">
-								<h3>{{ item.room}} {{item.value}}</h3>
+								<h3>{{item.room}} {{item.value}}</h3>
 							</div>
 							<md-button class="md-secondary md-raised md-warn" ng-click="deleteRoom(item)">
 								delete
@@ -62,7 +62,7 @@
 				<div layout="row">
 					<md-input-container>
 						<label>Scale</label>
-						<input ng-model="roomValue" type="number" min="1" max="10">
+						<input ng-model="roomValue" type="number" min="1" max="100">
 					</md-input-container>
 					<md-input-container>
 						<label>Rooms List</label>
